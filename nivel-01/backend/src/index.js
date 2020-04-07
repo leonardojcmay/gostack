@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 //Pacote que ira criar um id unico universal
 const { uuid, isUuid } = require('uuidv4');
 
 const app = express();
 
+app.use(cors());
 //Adicionando função para conseguir indentificar os dados dos arquivos json
 app.use(express.json());
 
