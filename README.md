@@ -334,3 +334,52 @@ plugins: [
 ```
 
 ---
+
+**<h2>Mobile com React Native</h2>**
+
+09/04/2020
+
+**React Native:**
+<br>- Versão do React para desenvolvimento mobile
+<br>- Multiplataforma
+<br>- Podemos manipular cada plataforma de forma diferente
+<br>- Código não é transpilado
+<br>**Expo:** 
+SDK com um conjunto funcionalidades prontas para usar(camera, video, integrações). Não é necessário configurar emulador. Desvantagens: Limitação sobre o controle do código nativo, várias biblioteca não tem suporte para o Expo, o expo liberou seu conjunto de ferramentas prontas para serem utilizadas com projetos que não utilizam Expo. Não vamos utilizar o Expo nesta aplicação.
+
+Arquitetura: contem imagem
+
+Configurando SDK: fazer todo o processo de instalação que esta nesta página
+<br>https://react-native.rocketseat.dev/android/windows
+<br>https://react-native.rocketseat.dev/android/emulador
+
+Criando pasta com arquivos do react-native
+```
+react-native init mobile
+
+adb devices
+
+react-native run-android
+```
+
+10/04/2020
+
+**Executando mobile:**
+<br>Abrir android studio e executar o emulador criado, rodar na pasta mobile:
+```
+react-native run-android
+```
+
+Criar arquivo src/index.js
+
+Diferenças para o ReactJS:
+Não possuem valor semantico(significado)
+Não possuem estilização própria
+Todos componentes possuem por padrao "display: flex"
+
+View: div, footer, header, main, aside, section
+Text: p, span, strong, h1, h2, h3
+Styles: não pode conter hifens, tem que ser camelCase
+
+Feito helloworld: tem imagem
+
