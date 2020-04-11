@@ -383,3 +383,69 @@ Styles: não pode conter hifens, tem que ser camelCase
 
 Feito helloworld: tem imagem
 
+Integrar react-native com o back-end:
+
+iniciar back-end: yarn dev
+
+Instalar no mobile:
+```
+yarn add axios
+```
+
+Criado arquivo src/services/api.js
+
+Conexao opçoes:
+ios com emulador: localhost
+ios com fisico: IP da maquina
+android com emulador: localhost(terá que rodar o comando: adb reverse tcp:3333 tcp:3333)
+android com emulador: 10.0.2.2(Android Studio)
+android com emulador: 10.0.3.2(Genymotion)
+android com fisico: IP da maquina
+
+---
+
+**<h2>TypeScript</h2>**
+
+10/04/2020
+
+Adiciona inteligencia no editor para ver mais informações
+Baseado no JavaScript: adiciona funcionalidades a mais no JS
+
+Configurando projeto: criar pasta typescript
+```
+yarn init -y
+
+yarn add typescript -D
+```
+
+Criar arquivo src/index.ts
+
+```
+yarn add express
+
+yarn add -D @types/express
+```
+
+Convertendo arquivo typescript para javascript para que seja possivel executá-lo:
+```
+yarn tsc src/index.ts
+
+yarn tsc --init
+
+yarn tsc
+```
+
+Executando projeto:
+```
+node src/index.js
+```
+
+Descomentar função no arquivo tsconfig.json:
+```
+"outDir": "./dist", 
+```
+
+Executando projeto:
+```
+node dist/index.js
+```
