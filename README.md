@@ -472,32 +472,32 @@ yarn add typescript -D
 yarn tsc --init
 ```
 
-Arquivo tsconfig.json: descomentar linhas
+Arquivo tsconfig.json: descomentar linhas:
 ```
 "outDir": "./dist",
 "rootDir": "./src",  
 ```
 
-Executar comando abaixo
+Executar comando abaixo:
 ```
 yarn tsc
 
 yarn add @types/express -D
 ```
 
-Executando servidor
+Executando servidor:
 ```
 yarn tsc
 
 node dist/server.js
 ```
 
-Excluir a pasta /dist e instalar ts-node-dev para atualizar de forma automatica o código
+Excluir a pasta /dist e instalar ts-node-dev para atualizar após alguma alteração de forma automatica o código:
 ```
 yarn add ts-node-dev -D
 ```
 
-package.json
+package.json:
 ```
 "scripts": {
     "build": "tsc",
@@ -510,113 +510,138 @@ Executando servidor:
 yarn dev:server
 ```
 
-EditorConfig baixar no visual code: botão direito na pasta do projeto e clicar em 'Generate .editorconfig'. Server para que se caso estiver trabalhando em um grupo que usem diferentes editores de texto, todos sigam na mesma identação, assim diminuindo os erros
+**EditorConfig** baixar no visual code: botão direito na pasta do projeto e clicar em 'Generate .editorconfig'. Serve para que se caso estiver trabalhando em um grupo que usem diferentes editores de texto, todos sigam na mesma identação, assim diminuindo os erros.
 
-ESLint: serve para automatizar os padrões de codigo do projeto
+**ESLint:** serve para automatizar os padrões de codigo do projeto.
 ```
 yarn add eslint -D
 
 yarn eslint --init
 ```
 
-Perguntas(respostas):
-To check syntax, find problems, and enforce code style
-JavaScript modules (import/export)> JavaScript modules (import/export)
-None of these
-Yes
-Node
-Use a popular style gui> Use a popular style guide
-Airbnb: https://github.com/airbnb/jav
-No 
+**Perguntas / Respostas:**
+<br>To check syntax, find problems, and enforce code style
+<br>JavaScript modules (import/export)> JavaScript modules (import/export)
+<br>None of these
+<br>Yes
+<br>Node
+<br>Use a popular style gui> Use a popular style guide
+<br>Airbnb: https://github.com/airbnb/jav
+<br>No
 
 ```
 yarn add -D @typescript-eslint/eslint-plugin@latest eslint-config-airbnb-base@latest eslint@^5.16.0 || ^6.8.0 eslint-plugin-import@^2.20.1 @typescript-eslint/parser@latest
 ```
 
-Instalar tambem ESLint no visual code
+Instalar tambem ESLint no visual code.
 
-settings.json: adicionar dados abaixo
+**settings.json:** adicionar dados abaixo.
 ```
-    "[javascript]": {
-      "editor.codeActionsOnSave": {
-        "source.fixAll.esllint": true,
-      }
-    },
-    "[javascriptreact]": {
-      "editor.codeActionsOnSave": {
-        "source.fixAll.esllint": true,
-      }
-    },
-    "[typescript]": {
-      "editor.codeActionsOnSave": {
-        "source.fixAll.esllint": true,
-      }
-    },
-    "[typescriptreact]": {
-      "editor.codeActionsOnSave": {
-        "source.fixAll.esllint": true,
-      }
-    },
+"[javascript]": {
+  "editor.codeActionsOnSave": {
+    "source.fixAll.esllint": true,
+  }
+},
+"[javascriptreact]": {
+  "editor.codeActionsOnSave": {
+    "source.fixAll.esllint": true,
+  }
+},
+"[typescript]": {
+  "editor.codeActionsOnSave": {
+    "source.fixAll.esllint": true,
+  }
+},
+"[typescriptreact]": {
+  "editor.codeActionsOnSave": {
+    "source.fixAll.esllint": true,
+  }
+},
 ```
 
-Importando arquivos Typescript
+Importando arquivos Typescript:
 ```
 yarn add -D eslint-import-resolver-typescript
-
 ```
 
-Arquivo .eslintrc.json
+Arquivo **.eslintrc.json:**
 ```
 "rules": {
-        "import/extensions": [
-            "error",
-            "ignorePackages",
-            {
-                "ts": "never"
-            }
-        ]
-    },
-    "settings": {
-        "import/resolver": {
-            "typescript": {}
+    "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+            "ts": "never"
         }
+    ]
+},
+"settings": {
+    "import/resolver": {
+        "typescript": {}
     }
+}
 ```
 
-Prettier: deixar o codigo melhor descrito
+**Prettier:** deixar o codigo melhor descrito.
 ```
 yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
 ```
 
-Arquivo .eslintrc.json
+Arquivo **.eslintrc.json:**
 ```
 "extends": [
-        "airbnb-base",
-        "plugin:@typescript-eslint/recommended",
-        "prettier/@typescript-eslint",
-        "plugin:prettier/recommended"
-    ],
-
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+],
 
 "plugins": [
-        "@typescript-eslint",
-        "prettier"
-    ],
+    "@typescript-eslint",
+    "prettier"
+],
 
 "rules": {
-        "prettier/prettier": "error",
-        "import/extensions": [
-            "error",
-            "ignorePackages",
-            {
-                "ts": "never"
-            }
-        ]
-    },
+    "prettier/prettier": "error",
+    "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+            "ts": "never"
+        }
+    ]
+},
 ```
 
-Criado arquivos prettier.config.js e .eslintignore, colocado informações necessárias nos arquivos
+Criado arquivos prettier.config.js e .eslintignore, colocado informações necessárias nos arquivos.
 
 Debugando NodeJS:
-Acessa o Debug no visual code, faz as configurações no arquivo launch.json. E para testar execute o sistema e depois execute o debug, podendo utilizar debugs caso necessário.
+<br>Acessa o Debug no visual code, faz as configurações no arquivo launch.json. E para testar execute o sistema e depois execute o debug, podendo utilizar debugs caso necessário.
 
+---
+
+**<h2>Construindo Aplicação: Go Barber</h2>**
+
+**Cadastro de agendamento:**
+<br>Instalando pacote para o id e date-fns para lidar com datas e horarios
+```
+yarn add uuidv4
+
+yarn add date-fns
+```
+
+**Model:** representação de como um dado é salvo dentro da aplicação, como o dado é composto, quais os campos dele...
+
+**Repository:** responsavel por fazer as operações do banco de dados, funções(criar, ler, listar, buscar, alterar, deletar...)
+
+**Route:** receber a requisição, chamar outro arquivos, devolver uma resposta.
+
+**SoC:** Separation of Concerns(Separação de preocupações)
+
+**DTO** (Data Transfer Object): transferindo dados de um objeto para outro.
+
+**Função Omit:** recebe dois parametros e serve para excuir uma propriedade dentro de um tipo.
+
+**Services & SOLID:** armazena as regras de negócio da aplicação
+<br>- **Services:** sempre contém um unico método, é onde fica a regra de negócio.
+<br>- Dependency Inversion(SOLID)
