@@ -645,3 +645,113 @@ yarn add date-fns
 **Services & SOLID:** armazena as regras de negócio da aplicação
 <br>- **Services:** sempre contém um unico método, é onde fica a regra de negócio.
 <br>- Dependency Inversion(SOLID)
+
+---
+
+Iniciando Back-end do app:
+
+Banco de Dados:
+
+Estratégias de abstração:
+- node-postgres: driver nativo
+- knex.js: query builder
+- ORM(Object Relational Mapping): sequelize(javascript), TypeORM(typescript)
+
+Docker:
+Ajuda a controlar os serviços da aplicação
+
+Funcionamento:
+Criação de ambientes isolados(container)
+Containers expõe portas para comunicação
+
+Principais conceitos:
+Imagem
+Container
+Docker Registry(Docker Hub)
+Dockerfile: receita de uma imagem
+
+Instalando Docker:
+https://www.notion.so/Instalando-Docker-6290d9994b0b4555a153576a1d97bee2
+https://docs.docker.com/toolbox/toolbox_install_windows/
+
+
+Instalando docker postgres:
+https://hub.docker.com/_/postgres
+
+Verificando se a porta 5432 não esta sendo utilizada:
+```
+netstat -o -n –a
+```
+
+Rodar no Docker Quickstart Terminal:
+```
+docker run --name gostack_postgres -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
+```
+
+Comando para ver se o container esta rodando:
+```
+docker ps
+
+docker logs 526c717be274
+```
+
+Iniciar docker:
+```
+docker start 526c717be274
+```
+
+Instalar Dbeacer: gerencia banco de dados:
+https://dbeaver.io/download/
+
+TypeORM:
+https://typeorm.io/#/using-ormconfig
+
+```
+yarn add typeorm pg
+```
+
+Criar tabela de agendamentos:
+package.json:
+```
+"scripts": {
+        "build": "tsc",
+        "dev:server": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts",
+        "start": "ts-node src/index.ts",
+        "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+    },
+```
+
+Rodar comando:
+```
+yarn typeorm
+
+yarn typeorm migration:create -n CreateAppointments
+```
+
+migrations: controlam a versão do banco de dados e as alteracoes simultaneas dentro do banco de dados. A migration evita que quando mais devs estiverem trabalhando dentro de um mesmo projeto, evita que os banco de dados estejam em versões diferentes
+
+Após criado migration de appointments:
+```
+yarn typeorm migration:run
+```
+
+So pode alterar uma migration se ela não foi enviado ainda pra o sistema de controle de versao
+Desfazendo a migration
+```
+yarn typeorm migration:revert
+```
+
+Mostrando as migrations que ja executaram:
+```
+yarn typeorm migration:show
+```
+
+arquivo tsconfig.json: descomentar campos
+"experimentalDecorators": true, 
+"emitDecoratorMetadata": true,  
+"strictPropertyInitialization": false,
+
+instalar:
+```
+yarn add reflect-metadata
+```
