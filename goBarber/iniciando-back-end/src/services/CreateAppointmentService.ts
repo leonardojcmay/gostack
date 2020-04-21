@@ -2,6 +2,8 @@
 import { startOfHour } from 'date-fns'; // startOfHour vai iniciar min, segundo tudo zerado
 import { getCustomRepository } from 'typeorm';
 
+import AppError from '../errors/AppError';
+
 import Appointment from '../models/Appointment';
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 
@@ -28,7 +30,7 @@ class CreateAppointmentService {
         );
 
         if (findAppointmentInSameDate) {
-            throw Error('This appointment is already booked');
+            throw new Error('This appointment is already booked');
         }
 
         // acessando metodo create do repository. Ele apenas cria uma instancia e depois tem que rodar o save, para salvar no banco de dados

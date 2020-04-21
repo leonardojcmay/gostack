@@ -4,6 +4,8 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import authConfig from '../config/auth';
 
+import AppError from '../errors/AppError';
+
 import User from '../models/User';
 
 interface Request {
@@ -24,7 +26,7 @@ class AuthenticateUserService {
         const user = await usersRepository.findOne({ where: { email } });
         // verificando se o usuario nao for encontrado
         if (!user) {
-            throw new Error('Incorrect email/password combination.');
+            throw new AppError('Incorrect email/password combination.', 401);
         }
 
         // Se o usuario ja foi encontrado, usa o compare para ver se as senhas batem
@@ -33,7 +35,7 @@ class AuthenticateUserService {
         const passwordMatched = await compare(password, user.password);
         // se a senha for errada retorna este erro abaixo
         if (!passwordMatched) {
-            throw new Error('Incorrect email/password combination.');
+            throw new AppError('Incorrect email/password combination.', 401);
         }
 
         // gerando token de autenticação

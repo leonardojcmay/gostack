@@ -833,3 +833,16 @@ ver arquivos que foram feitos uploads. Informando apos o files o nome da imagem 
 rota para visualizar os arquivos
 http://localhost:3333/files/2be64fd0125056f45110-aula3.png
 
+---
+
+Tratando exceções
+Exception Handling
+
+Lidando com erros dentro da aplicação
+
+---
+
+Global Exception Handler
+middleware que vai captar todos os erros da aplicação
+
+

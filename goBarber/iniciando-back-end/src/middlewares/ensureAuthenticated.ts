@@ -1,6 +1,7 @@
 // vai verificar se o usuario esta realmente autenticado na aplicação
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
+import AppError from '../errors/AppError';
 
 import authConfig from '../config/auth';
 
@@ -21,7 +22,7 @@ export default function ensureAuthenticated(
     const authHeader = request.headers.authorization;
     // se o token nao existir no header
     if (!authHeader) {
-        throw new Error('JWT token is missing');
+        throw new AppError('JWT token is missing', 401);
     }
 
     // Dividindo as partes: Bearer {token}
@@ -43,6 +44,6 @@ export default function ensureAuthenticated(
         // se retornar um usuario valido
         return next();
     } catch {
-        throw new Error('Invalid JWT token');
+        throw new AppError('Invalid JWT token', 401);
     }
 }

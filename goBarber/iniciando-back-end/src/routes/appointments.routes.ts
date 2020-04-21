@@ -23,24 +23,20 @@ appointmentsRouter.get('/', async (request, response) => {
 
 // Cadastrando agendamento
 appointmentsRouter.post('/', async (request, response) => {
-    try {
-        const { provider_id, date } = request.body; // nome do cabeleireiro e a data
+    const { provider_id, date } = request.body; // nome do cabeleireiro e a data
 
-        // pegando a string e tranformando num objeto do javascript
-        const parsedDate = parseISO(date);
+    // pegando a string e tranformando num objeto do javascript
+    const parsedDate = parseISO(date);
 
-        // conectando com o CreateAppointmentService(onde esta a regra de negocio), para efetuar o cadastro
-        const createAppointment = new CreateAppointmentService();
+    // conectando com o CreateAppointmentService(onde esta a regra de negocio), para efetuar o cadastro
+    const createAppointment = new CreateAppointmentService();
 
-        const appointment = await createAppointment.execute({
-            provider_id,
-            date: parsedDate,
-        });
+    const appointment = await createAppointment.execute({
+        provider_id,
+        date: parsedDate,
+    });
 
-        return response.json(appointment);
-    } catch (err) {
-        return response.status(400).json({ error: err.message });
-    }
+    return response.json(appointment);
 });
 
 export default appointmentsRouter;

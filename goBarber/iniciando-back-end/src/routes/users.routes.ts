@@ -12,27 +12,23 @@ const upload = multer(uploadConfig);
 
 // Cadastrando usuario
 usersRouter.post('/', async (request, response) => {
-    try {
-        const { name, email, password } = request.body;
+    const { name, email, password } = request.body;
 
-        // instanciando usuario
-        const createUser = new CreateUserService();
+    // instanciando usuario
+    const createUser = new CreateUserService();
 
-        // usuario criado
-        const user = await createUser.execute({
-            name,
-            email,
-            password,
-        });
+    // usuario criado
+    const user = await createUser.execute({
+        name,
+        email,
+        password,
+    });
 
-        // retirando a informação do password para que não seja mostrado em tela
-        delete user.password;
+    // retirando a informação do password para que não seja mostrado em tela
+    delete user.password;
 
-        // retornando usuario cadastrado
-        return response.json(user);
-    } catch (err) {
-        return response.status(400).json({ error: err.message });
-    }
+    // retornando usuario cadastrado
+    return response.json(user);
 });
 
 // Atualizando uma informação unica que seria o avatar do usuario
@@ -43,21 +39,17 @@ usersRouter.patch(
     async (request, response) => {
         // console.log(request.file);
 
-        try {
-            const updateUserAvatar = new UpdateUserAvatarService();
+        const updateUserAvatar = new UpdateUserAvatarService();
 
-            const user = await updateUserAvatar.execute({
-                user_id: request.user.id,
-                avatarFilename: request.file.filename,
-            });
+        const user = await updateUserAvatar.execute({
+            user_id: request.user.id,
+            avatarFilename: request.file.filename,
+        });
 
-            // deletando password para que não apareça na resposta da chamada
-            delete user.password;
+        // deletando password para que não apareça na resposta da chamada
+        delete user.password;
 
-            return response.json(user);
-        } catch (err) {
-            return response.status(400).json({ error: err.message });
-        }
+        return response.json(user);
     },
 );
 
