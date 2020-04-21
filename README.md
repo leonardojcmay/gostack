@@ -777,3 +777,34 @@ Muitos para Muitos (ManyToMany)
 
 KISS - Keep It Simple & Stupid
 
+Criptografia de senha:
+```
+yarn add bcryptjs
+
+yarn add -D @types/bcryptjs
+```
+
+---
+
+JWT - JSON Web Token: Autenticação
+contem imagem
+
+rota de autenticação do usuario
+
+gerando token JWT
+```
+yarn add jsonwebtoken
+
+yarn add -D @types/jsonwebtoken
+```
+
+https://www.md5online.org/
+gera-se um codigo de acordo com o que voce escrever
+1c43ce7fcdd5ce0255b4d289bd3266d8
+colocado no arquivo AuthenticateUserService.ts
+
+Site para debuggar token:
+https://jwt.io/
+
+midleware de autenticação: vai evitar que usuarios não autenticadas possam acessar rotas especificas da aplicação
+

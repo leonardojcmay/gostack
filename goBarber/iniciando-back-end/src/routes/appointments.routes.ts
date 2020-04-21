@@ -6,7 +6,12 @@ import { getCustomRepository } from 'typeorm';
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 import CreateAppointmentService from '../services/CreateAppointmentService';
 
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
 const appointmentsRouter = Router();
+
+// Aplicando o middleware de autenticação em todas as rotas de agendamentos
+appointmentsRouter.use(ensureAuthenticated);
 
 // listar todos os agendamentos
 appointmentsRouter.get('/', async (request, response) => {
