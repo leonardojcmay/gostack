@@ -808,3 +808,28 @@ https://jwt.io/
 
 midleware de autenticação: vai evitar que usuarios não autenticadas possam acessar rotas especificas da aplicação
 
+---
+
+Upload de imagens
+
+// se o usuario ja tiver uma imagem antiga, deletar a imagem antiga para que nao fique ocupando espaço na aplicação
+// validar se o usuario realmente existe
+
+alterando o avatar do perfil
+```
+yarn typeorm migration:create -n AddAvatarFieldToUsers
+
+yarn typeorm migration:run
+```
+
+Instalar multer para lidar com o upload de arquivos
+```
+yarn add multer
+
+yarn add -D @types/multer
+```
+
+ver arquivos que foram feitos uploads. Informando apos o files o nome da imagem ja ira aparecer na tela a imagem para você
+rota para visualizar os arquivos
+http://localhost:3333/files/2be64fd0125056f45110-aula3.png
+
