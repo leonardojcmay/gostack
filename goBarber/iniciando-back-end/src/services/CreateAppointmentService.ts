@@ -6,7 +6,7 @@ import Appointment from '../models/Appointment';
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 
 interface Request {
-    provider: string;
+    provider_id: string;
     date: Date;
 }
 
@@ -14,7 +14,7 @@ interface Request {
 class CreateAppointmentService {
     // Dependency Inversion (SOLID)
 
-    public async execute({ provider, date }: Request): Promise<Appointment> {
+    public async execute({ provider_id, date }: Request): Promise<Appointment> {
         const appointmentsRepository = getCustomRepository(
             AppointmentsRepository,
         );
@@ -33,7 +33,7 @@ class CreateAppointmentService {
 
         // acessando metodo create do repository. Ele apenas cria uma instancia e depois tem que rodar o save, para salvar no banco de dados
         const appointment = appointmentsRepository.create({
-            provider,
+            provider_id,
             date: appointmentDate,
         });
 

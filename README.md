@@ -755,3 +755,25 @@ instalar:
 ```
 yarn add reflect-metadata
 ```
+
+---
+
+Cadastro de usuarios:
+```
+yarn typeorm migration:create -n CreateUsers
+```
+
+Alterando nome de uma tabela no banco utilizando migration:
+```
+yarn typeorm migration:create -n AlterProviderFieldToProviderId
+```
+
+O metodo down tem que sempre fazer ao contrario do metodo up
+
+Relacionamentos:
+Um para Um (OneToOne)
+Um para Muitos (OneToMany)
+Muitos para Muitos (ManyToMany)
+
+KISS - Keep It Simple & Stupid
+
