@@ -30,7 +30,7 @@ class CreateAppointmentService {
         );
 
         if (findAppointmentInSameDate) {
-            throw new Error('This appointment is already booked');
+            throw new AppError('This appointment is already booked');
         }
 
         // acessando metodo create do repository. Ele apenas cria uma instancia e depois tem que rodar o save, para salvar no banco de dados

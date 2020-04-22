@@ -648,37 +648,35 @@ yarn add date-fns
 
 ---
 
-Iniciando Back-end do app:
+**Iniciando Back-end do app:**
 
-Banco de Dados:
+Banco de Dados: Postgres
 
 Estratégias de abstração:
-- node-postgres: driver nativo
-- knex.js: query builder
-- ORM(Object Relational Mapping): sequelize(javascript), TypeORM(typescript)
+<br>- node-postgres: driver nativo
+<br>- knex.js: query builder
+<br>- ORM(Object Relational Mapping): sequelize(javascript), TypeORM(typescript)
 
-Docker:
-Ajuda a controlar os serviços da aplicação
+**Docker:**
+<br>Ajuda a controlar os serviços da aplicação
+<br>**Funcionamento:**
+<br>- Criação de ambientes isolados(container)
+<br>- Containers expõe portas para comunicação
+<br>**Principais conceitos:**
+<br>- Imagem
+<br>- Container
+<br>- Docker Registry(Docker Hub)
+<br>- Dockerfile: receita de uma imagem
 
-Funcionamento:
-Criação de ambientes isolados(container)
-Containers expõe portas para comunicação
-
-Principais conceitos:
-Imagem
-Container
-Docker Registry(Docker Hub)
-Dockerfile: receita de uma imagem
-
-Instalando Docker:
+Instalando Docker:<br>
 https://www.notion.so/Instalando-Docker-6290d9994b0b4555a153576a1d97bee2
 https://docs.docker.com/toolbox/toolbox_install_windows/
 
 
-Instalando docker postgres:
+Instalando docker postgres:<br>
 https://hub.docker.com/_/postgres
 
-Verificando se a porta 5432 não esta sendo utilizada:
+Verificando se a porta 5432 esta sendo utilizada:
 ```
 netstat -o -n –a
 ```
@@ -700,25 +698,25 @@ Iniciar docker:
 docker start 526c717be274
 ```
 
-Instalar Dbeacer: gerencia banco de dados:
+Instalar Dbeacer: gerencia banco de dados<br>
 https://dbeaver.io/download/
 
-TypeORM:
+TypeORM:<br>
 https://typeorm.io/#/using-ormconfig
 
 ```
 yarn add typeorm pg
 ```
 
-Criar tabela de agendamentos:
+Criando a tabela de agendamentos:<br>
 package.json:
 ```
 "scripts": {
-        "build": "tsc",
-        "dev:server": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts",
-        "start": "ts-node src/index.ts",
-        "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
-    },
+    "build": "tsc",
+    "dev:server": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts",
+    "start": "ts-node src/index.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+},
 ```
 
 Rodar comando:
@@ -728,37 +726,38 @@ yarn typeorm
 yarn typeorm migration:create -n CreateAppointments
 ```
 
-migrations: controlam a versão do banco de dados e as alteracoes simultaneas dentro do banco de dados. A migration evita que quando mais devs estiverem trabalhando dentro de um mesmo projeto, evita que os banco de dados estejam em versões diferentes
+**Migrations:** controlam a versão do banco de dados e as alteracoes simultaneas dentro do banco de dados. A migration evita que quando mais devs estiverem trabalhando dentro de um mesmo projeto, evita que os banco de dados estejam em versões diferentes.
 
 Após criado migration de appointments:
 ```
 yarn typeorm migration:run
 ```
 
-So pode alterar uma migration se ela não foi enviado ainda pra o sistema de controle de versao
-Desfazendo a migration
+So pode alterar uma migration se ela não foi enviado ainda pra o sistema de controle de versão.
+
+Desfazendo a migration:
 ```
 yarn typeorm migration:revert
 ```
 
-Mostrando as migrations que ja executaram:
+Mostrando as migrations que ja forma executadas:
 ```
 yarn typeorm migration:show
 ```
 
-arquivo tsconfig.json: descomentar campos
-"experimentalDecorators": true, 
-"emitDecoratorMetadata": true,  
+Arquivo tsconfig.json: descomentar campos.
+<br>"experimentalDecorators": true, 
+<br>"emitDecoratorMetadata": true,  
 "strictPropertyInitialization": false,
 
-instalar:
+Instalar:
 ```
 yarn add reflect-metadata
 ```
 
 ---
 
-Cadastro de usuarios:
+**Cadastro de usuarios:**
 ```
 yarn typeorm migration:create -n CreateUsers
 ```
@@ -771,9 +770,9 @@ yarn typeorm migration:create -n AlterProviderFieldToProviderId
 O metodo down tem que sempre fazer ao contrario do metodo up
 
 Relacionamentos:
-Um para Um (OneToOne)
-Um para Muitos (OneToMany)
-Muitos para Muitos (ManyToMany)
+<br>- Um para Um (OneToOne)
+<br>- Um para Muitos (OneToMany)
+<br>- Muitos para Muitos (ManyToMany)
 
 KISS - Keep It Simple & Stupid
 
@@ -786,63 +785,155 @@ yarn add -D @types/bcryptjs
 
 ---
 
-JWT - JSON Web Token: Autenticação
-contem imagem
+JWT (JSON Web Token): Autenticação
 
-rota de autenticação do usuario
+Acesso a imagem explicativa: https://github.com/leonardojcmay/gostack/blob/master/imagens/nivel%2002/03%20-%20Autentica%C3%A7%C3%A3o%20JWT.JPG?raw=true
 
-gerando token JWT
+Rota de autenticação do usuario
+
+Gerando token JWT
 ```
 yarn add jsonwebtoken
 
 yarn add -D @types/jsonwebtoken
 ```
 
-https://www.md5online.org/
-gera-se um codigo de acordo com o que voce escrever
+Site: https://www.md5online.org/
+<br>Gera-se um codigo de acordo com o que voce escrever
 1c43ce7fcdd5ce0255b4d289bd3266d8
 colocado no arquivo AuthenticateUserService.ts
 
 Site para debuggar token:
 https://jwt.io/
 
-midleware de autenticação: vai evitar que usuarios não autenticadas possam acessar rotas especificas da aplicação
+Midleware de autenticação: vai evitar que usuarios não autenticadas possam acessar rotas especificas da aplicação
 
 ---
 
-Upload de imagens
+**Upload de imagens**
 
-// se o usuario ja tiver uma imagem antiga, deletar a imagem antiga para que nao fique ocupando espaço na aplicação
-// validar se o usuario realmente existe
+Se o usuario ja tiver uma imagem antiga, deletar a imagem antiga para que nao fique ocupando espaço na aplicação
+<br>Valida se o usuario realmente existe
 
-alterando o avatar do perfil
+Alterando o avatar do perfil
+
+Adicionando migration:
 ```
 yarn typeorm migration:create -n AddAvatarFieldToUsers
 
 yarn typeorm migration:run
 ```
 
-Instalar multer para lidar com o upload de arquivos
+Instalar multer para lidar com o upload de arquivos:
 ```
 yarn add multer
 
 yarn add -D @types/multer
 ```
 
-ver arquivos que foram feitos uploads. Informando apos o files o nome da imagem ja ira aparecer na tela a imagem para você
-rota para visualizar os arquivos
+Ver arquivos que foram feitos uploads. Informando apos o files o nome da imagem ja ira aparecer na tela a imagem para você.
+<br>Rota para visualizar os arquivos: 
 http://localhost:3333/files/2be64fd0125056f45110-aula3.png
 
 ---
 
-Tratando exceções
-Exception Handling
+**Tratando exceções**
 
-Lidando com erros dentro da aplicação
+Exception Handling: lidando com erros dentro da aplicação
+
+Global Exception Handler: middleware que vai captar todos os erros da aplicação
+
+Instalar pacote:
+```
+yarn add express-async-errors
+```
 
 ---
 
-Global Exception Handler
-middleware que vai captar todos os erros da aplicação
+**<h2>Primeiro projeto com React</h2>**
 
+Iniciando aplicação: nesta aplicação será possivel localizar repositórios no github.
+```
+create-react-app primeiro-projeto-react --template=typescript
+```
 
+EditorConfig: botão direito e clicar em generate .editorconfig
+
+ESlint:
+```
+yarn add eslint -D
+```
+
+package.json retirar eslintconfig
+
+```
+yarn eslint --init
+```
+
+Respostas:
+To check syntax, find problems, and enforce code style
+JavaScript modules (import/export)
+React
+Yes
+Browser
+Use a popular style guide
+Airbnb: https://github.com/airbnb/javascript
+JSON
+No
+
+```
+yarn add eslint-plugin-react@^7.19.0 @typescript-eslint/eslint-plugin@latest eslint-config-airbnb@latest eslint-plugin-import@^2.20.1 eslint-plugin-jsx-a11y@^6.2.3 eslint-plugin-react-hooks@^2.5.0 @typescript-eslint/parser@latest -D
+```
+
+Ajustado arquivos .eslintignore e .eslintrc.json
+
+Pacote para fazer o eslint entender o typescript:
+```
+yarn add eslint-import-resolver-typescript -D
+```
+
+Prettier:
+```
+yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
+```
+
+Ajustado arquivos .eslintignore e .eslintrc.json e criado arquivo prettier.config.js
+
+---
+
+Criando rotas:
+
+```
+yarn add react-router-dom
+
+yarn add @types/react-router-dom -D
+
+```
+
+Styled Components: isola o css em componentes
+```
+yarn add styled-components
+
+yarn add @types/styled-components -D
+```
+
+Fonte da letra: roboto
+
+Pacote que permite trabalhar com as cores:
+```
+yarn add polished
+```
+
+Pacote para utilização de icones:
+```
+yarn add react-icons
+```
+
+**Conectando a API:**
+
+Instalar axios:
+```
+yarn add axios
+```
+
+Acesso a api do github: https://api.github.com/
