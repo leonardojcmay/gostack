@@ -937,3 +937,13 @@ yarn add axios
 ```
 
 Acesso a api do github: https://api.github.com/
+
+**Tratando erros:**
+
+Dar enter sem tem nada digitado
+Informar repositório que não existe
+
+**Salvando no Storage:**
+
+Salvando dados cadastrados para que continuem em tela
+
