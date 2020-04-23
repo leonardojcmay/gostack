@@ -8,7 +8,7 @@ const Routes: React.FC = () => (
     // Switch garante que aoenas uma rota seja exibida
     <Switch>
         <Route path="/" exact component={Dashboard} />
-        <Route path="/repository" component={Repository} />
+        <Route path="/repositories/:repository+" component={Repository} />
     </ Switch>
 );
 

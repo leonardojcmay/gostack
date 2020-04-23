@@ -947,3 +947,18 @@ Informar repositório que não existe
 
 Salvando dados cadastrados para que continuem em tela
 
+**Navegando entra rotas:**
+
+Indo para detalhes de cada repoditory utilizando o Link
+
+**Estilizando detalhes dos repositorios:**
+
+Tentar utilizar no maximo 2 niveis de estilização para cada tag
+
+**Conectando com a API github:**
+
+Listagem as issues dos repositorios
+
+---
+
+
