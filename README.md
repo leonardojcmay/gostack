@@ -648,7 +648,7 @@ yarn add date-fns
 
 ---
 
-**Iniciando Back-end do app:**
+**Iniciando Back-end do app: GoBarber**
 
 Banco de Dados: Postgres
 
@@ -961,4 +961,30 @@ Listagem as issues dos repositorios
 
 ---
 
+**Iniciando Front-end do app: GoBarber**
 
+```
+create-react-app gobarber-web --template=typescript
+```
+
+Configurado ferramentas:
+ESlint
+Editor config
+Prettier
+
+Instalar styled components:
+```
+yarn add styled-components
+
+yarn add @types/styled-components -D
+```
+
+Fonte: Roboto Slab
+
+**Página de login:**
+
+```
+yarn add react-icons
+
+yarn add polished
+```
