@@ -1,11 +1,11 @@
 import React, { useState, useEffect, FormEvent } from 'react';
-import api from '../../services/api';
 // Pacote utilizado para navegação das rotas
 import { Link } from 'react-router-dom';
 
 import { FiChevronRight } from 'react-icons/fi';
+import api from '../../services/api';
 import logoImg from '../../assets/logo.svg';
-import { Title, Form, Repositories, Error } from './styles'
+import { Title, Form, Repositories, Error } from './styles';
 
 interface Repository {
     // Não precisa colocar todas as informações que contem no repository
@@ -19,19 +19,19 @@ interface Repository {
 }
 
 const Dashboard: React.FC = () => {
-
     const [newRepo, setNewRepo] = useState('');
     // Informando tambem que este estado é um array de repositories
     const [repositories, setRepositories] = useState<Repository[]>(() => {
-        const storagedRepositories = localStorage.getItem('@GithubExplorer:repositories');
+        const storagedRepositories = localStorage.getItem(
+            '@GithubExplorer:repositories',
+        );
 
         // Se conter objetos salvos no atoragedRepositories
         if (storagedRepositories) {
             return JSON.parse(storagedRepositories);
-        } else {
-            // Se não encontrar nada retorna um array vazio
-            return [];
         }
+        // Se não encontrar nada retorna um array vazio
+        return [];
     });
 
     // Tratando erros
@@ -41,11 +41,15 @@ const Dashboard: React.FC = () => {
     // Para que quando atualize a página não tenha que cadastra-los tudo novamente
     // Sempre que tiver uma mudança nos repositories ira salvar no local storage
     useEffect(() => {
-        localStorage.setItem('@GithubExplorer:repositories', JSON.stringify(repositories));
+        localStorage.setItem(
+            '@GithubExplorer:repositories',
+            JSON.stringify(repositories),
+        );
     }, [repositories]);
 
-    async function handleAddRepository(event: FormEvent<HTMLFormElement>): Promise<void> {
-
+    async function handleAddRepository(
+        event: FormEvent<HTMLFormElement>,
+    ): Promise<void> {
         // Adição de um novo repositorio
         // Consumir api do github
         // Salvar novo repositorio no estado
@@ -73,53 +77,51 @@ const Dashboard: React.FC = () => {
             // Limpando erro caso de certo
             setInputEerror('');
         } catch (err) {
-            setInputEerror("Erro na busca por esse repositório.")
+            setInputEerror('Erro na busca por esse repositório.');
         }
-
     }
 
     return (
-        <>
-            <img src={logoImg} alt="Github Explorer" />
-            <Title>Explore repositórios no Github</Title>
+      <>
+          <img src={logoImg} alt="Github Explorer" />
+          <Title>Explore repositórios no Github</Title>
 
-            <Form hasError={!!inputError} onSubmit={handleAddRepository}>
-                <input
-                    value={newRepo}
-                    onChange={(e) => setNewRepo(e.target.value)}
-                    placeholder="Digite o nome do repositório"
+          <Form hasError={!!inputError} onSubmit={handleAddRepository}>
+              <input
+                  value={newRepo}
+                  onChange={e => setNewRepo(e.target.value)}
+                  placeholder="Digite o nome do repositório"
                 />
-                <button type="submit">Pesquisar</button>
+              <button type="submit">Pesquisar</button>
             </Form>
 
-            {/* Mostrando os erros */}
-            {/* Se a variavel erro estiver preenchida utiliza esse erro */}
-            {inputError && <Error>{inputError}</Error>}
+          {/* Mostrando os erros */}
+          {/* Se a variavel erro estiver preenchida utiliza esse erro */}
+          {inputError && <Error>{inputError}</Error>}
 
-            {/* Lista de repositorios */}
-            <Repositories>
-                {repositories.map(repository => (
-                    <Link
-                        key={repository.full_name}
-                        to={`/repositories/${repository.full_name}`}
+          {/* Lista de repositorios */}
+          <Repositories>
+              {repositories.map(repository => (
+                  <Link
+                      key={repository.full_name}
+                      to={`/repositories/${repository.full_name}`}
                     >
-                        <img
-                            src={repository.owner.avatar_url}
-                            alt={repository.owner.login}
+                      <img
+                          src={repository.owner.avatar_url}
+                          alt={repository.owner.login}
                         />
 
-                        <div>
-                            <strong>{repository.full_name}</strong>
-                            <p>{repository.description}</p>
+                      <div>
+                          <strong>{repository.full_name}</strong>
+                          <p>{repository.description}</p>
                         </div>
 
-                        <FiChevronRight size={20} />
+                      <FiChevronRight size={20} />
                     </Link>
                 ))}
-
             </Repositories>
         </>
     );
-}
+};
 
 export default Dashboard;

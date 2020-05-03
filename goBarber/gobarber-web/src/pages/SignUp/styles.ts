@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
-import signInBackgroundImg from '../../assets/sign-in-background.png';
+import signUpBackgroundImg from '../../assets/sign-up-background.png';
 
 export const Container = styled.div`
     height: 100vh; /* forçando que container tenha 100% da tela do usuario */
@@ -43,7 +43,7 @@ export const Content = styled.div`
 
     /* pegando somente o a que esta dentro do content, não entrando em niveis superiores, para que assim nao altere os dados do form a */
     > a {
-        color: #ff9000;
+        color: #F4EDE8;
         display: block;
         margin-top: 24px;
         text-decoration: none;
@@ -57,13 +57,13 @@ export const Content = styled.div`
         }
 
         &:hover {
-            color: ${shade(0.2, '#ff9000')};
+            color: ${shade(0.2, '#F4EDE8')};
         }
     }
 `;
 
 export const Background = styled.div`
     flex: 1; /* vai fazer ocupar todo o espaço menos o 700px do content */
-    background: url(${signInBackgroundImg}) no-repeat center; /* colocando a imagem na tela */
+    background: url(${signUpBackgroundImg}) no-repeat center; /* colocando a imagem na tela */
     background-size: cover; /* garantindo que a imagem cubra o conteudo inteiro */
 `;

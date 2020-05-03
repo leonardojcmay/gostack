@@ -949,7 +949,7 @@ Salvando dados cadastrados para que continuem em tela
 
 **Navegando entra rotas:**
 
-Indo para detalhes de cada repoditory utilizando o Link
+Indo para detalhes de cada repository utilizando o Link
 
 **Estilizando detalhes dos repositorios:**
 
@@ -987,4 +987,12 @@ Fonte: Roboto Slab
 yarn add react-icons
 
 yarn add polished
+```
+
+**Página de cadastro:**
+
+Utilizando Unform: auxilia na performance de formulários no React
+
+```
+yarn add @unform/core @unform/web
 ```
