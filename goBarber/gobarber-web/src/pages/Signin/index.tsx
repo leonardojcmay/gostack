@@ -1,9 +1,10 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useContext } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
+import { AuthContext } from '../../context/AuthContext';
 import getValidationErros from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.svg';
@@ -13,40 +14,55 @@ import Button from '../../components/Button';
 
 import { Container, Content, Background } from './styles';
 
+// Dados que vão ser recebidos atraves do formulario
+interface SignInFormData {
+    email: string;
+    password: string;
+}
+
 const SignIn: React.FC = () => {
     // para ter acesso direto ao formulario
     const formRef = useRef<FormHandles>(null);
-    // console.log(formRef);
+
+    const { signIn } = useContext(AuthContext);
 
     // função de cadastrar
-    const handleSubmit = useCallback(async (data: object) => {
-        // console.log(data);
-        // Validando formulário
-        try {
-            // Zerando os erros
-            formRef.current?.setErrors({});
+    const handleSubmit = useCallback(
+        async (data: SignInFormData) => {
+            // console.log(data);
+            // Validando formulário
+            try {
+                // Zerando os erros
+                formRef.current?.setErrors({});
 
-            // validando um objeto inteiro
-            const schema = Yup.object().shape({
-                email: Yup.string()
-                    .required('E-mail obrigatório')
-                    .email('Digite um e-mail válido'), // string obrigatório no formato e-mail
-                password: Yup.string().required('Senha obrigatória'), // string obrigatório no minimo 6 letras
-            });
+                // validando um objeto inteiro
+                const schema = Yup.object().shape({
+                    email: Yup.string()
+                        .required('E-mail obrigatório')
+                        .email('Digite um e-mail válido'), // string obrigatório no formato e-mail
+                    password: Yup.string().required('Senha obrigatória'), // string obrigatório no minimo 6 letras
+                });
 
-            // retornando os dados feitos no input
-            await schema.validate(data, {
-                // retornando todos os erros de uma vez só
-                abortEarly: false,
-            });
-        } catch (err) {
-            console.log(err);
+                // retornando os dados feitos no input
+                await schema.validate(data, {
+                    // retornando todos os erros de uma vez só
+                    abortEarly: false,
+                });
 
-            const errors = getValidationErros(err);
+                signIn({
+                    email: data.email,
+                    password: data.password,
+                });
+            } catch (err) {
+                console.log(err);
 
-            formRef.current?.setErrors(errors);
-        }
-    }, []);
+                const errors = getValidationErros(err);
+
+                formRef.current?.setErrors(errors);
+            }
+        },
+        [signIn],
+    );
 
     return (
         <Container>

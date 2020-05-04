@@ -1013,5 +1013,25 @@ useRef: para obter informações direto ao  formulário
 Criando tooltip de erros: 
 Mensagem de erro ao passar mouse por cima do icone
 
-Validação de login:
+Validação de login
+
+Habilitando CORS na API: acessar o back-end da aplicação,
+Cors evita que alguns sites que não sejam confiaveis da aplicação possam acessar o site
+```
+yarn add cors
+
+yarn add @types/cors
+```
+
+Ajustar configurações no server.ts
+
+API de contexto: uma variavel que ficará acessivel de forma global ou não global dentro da aplicação
+
+Login pelo contexto:
+metodo de autenticação
+```
+yarn add axios
+```
+
+Sempre que tornar um metodo em async, ele obrigatoriamente estara retornando uma Promise
 
