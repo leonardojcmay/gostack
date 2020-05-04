@@ -7,9 +7,12 @@ import React, {
 } from 'react';
 // importando as propriedades que um icone pode ter
 import { IconBaseProps } from 'react-icons';
+import { FiAlertCircle } from 'react-icons/fi';
 import { useField } from '@unform/core';
 
-import { Container } from './styles';
+import Tooltip from '../Tooltip';
+
+import { Container, Error } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     name: string; // fazendo o name ser obrigatório
@@ -58,9 +61,14 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
     }, [fieldName, registerField]);
 
     return (
-        <Container isFilled={isFilled} isFocused={isFocused}>
+        // !! serve para transformar a variavel em boolean(true ou false)
+        <Container
+            isErrored={!!error}
+            isFilled={isFilled}
+            isFocused={isFocused}
+        >
             {/* verificando se existir um icone */}
-            {Icon && <Icon size={25} />}
+            {Icon && <Icon size={20} />}
             <input
                 onFocus={handleInputFocus} // saber quando tem o foco no input
                 onBlur={handleInputBlur} // saber quando o input perdeu o foco
@@ -68,7 +76,11 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
                 ref={inputRef}
                 {...rest}
             />
-            {error}
+            {error && (
+                <Error title={error}>
+                    <FiAlertCircle color="#c53030" size={20} />
+                </Error>
+            )}
         </Container>
     );
 };

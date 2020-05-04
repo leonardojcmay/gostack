@@ -32,7 +32,7 @@ const SignUp: React.FC = () => {
                 email: Yup.string()
                     .required('E-mail obrigatório')
                     .email('Digite um e-mail válido'), // string obrigatório no formato e-mail
-                password: Yup.string().min(6, 'Senha no minimo 6 digitos'), // string obrigatório no minimo 6 letras
+                password: Yup.string().min(6, 'No minimo 6 digitos'), // string obrigatório no minimo 6 letras
             });
 
             // retornando os dados feitos no input

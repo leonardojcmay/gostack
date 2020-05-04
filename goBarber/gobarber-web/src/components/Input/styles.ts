@@ -1,8 +1,11 @@
 import styled, { css } from 'styled-components';
 
+import Tooltip from '../Tooltip';
+
 interface ContainerProps {
     isFocused: boolean;
     isFilled: boolean;
+    isErrored: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -21,6 +24,12 @@ export const Container = styled.div<ContainerProps>`
     & + div {
         margin-top: 8px; /* colocando margem entre os inputs */
     }
+
+    ${props =>
+        props.isErrored &&
+        css`
+            border-color: #c53030;
+        `}
 
     /* acessando as propriedades do componente e quando a propriedade isFocused estiver true alterar a cor */
     ${props =>
@@ -49,5 +58,25 @@ export const Container = styled.div<ContainerProps>`
 
     svg {
         margin-right: 16px;
+    }
+`;
+
+export const Error = styled(Tooltip)`
+    height: 20px;
+    margin-left: 16px;
+
+    svg {
+        margin: 0;
+    }
+
+    /* Forçando para que a cor da mensagem fique em vermelho */
+    span {
+        background: #c53030;
+        color: #fff;
+
+        /* colocando a flexa em vermelho tambem */
+        &::before {
+            border-color: #c53030 transparent;
+        }
     }
 `;

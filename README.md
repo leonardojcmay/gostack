@@ -1010,3 +1010,8 @@ yarn add @types/yup -D
 Exibindo erros do input:
 useRef: para obter informações direto ao  formulário
 
+Criando tooltip de erros: 
+Mensagem de erro ao passar mouse por cima do icone
+
+Validação de login:
+
