@@ -1,12 +1,17 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+interface ContainerProps {
+    isFocused: boolean;
+    isFilled: boolean;
+}
 
+export const Container = styled.div<ContainerProps>`
     background: #232129;
     border-radius: 10px;
-    border: 2px solid #232129;
     padding: 16px;
     width: 100%;
+
+    border: 2px solid #232129;
     color: #666360;
 
     /* alinhando no centro */
@@ -16,6 +21,20 @@ export const Container = styled.div`
     & + div {
         margin-top: 8px; /* colocando margem entre os inputs */
     }
+
+    /* acessando as propriedades do componente e quando a propriedade isFocused estiver true alterar a cor */
+    ${props =>
+        props.isFocused &&
+        css`
+            color: #ff9000;
+            border-color: #ff9000;
+        `}
+
+    ${props =>
+        props.isFilled &&
+        css`
+            color: #ff9000; /*Somente permanecendo o icone caso tenha informações ja preenchidas no input*/
+        `}
 
     input {
         flex: 1; /*ocupando todo espaço possivel*/

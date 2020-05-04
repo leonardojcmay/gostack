@@ -43,7 +43,7 @@ export const Content = styled.div`
 
     /* pegando somente o a que esta dentro do content, não entrando em niveis superiores, para que assim nao altere os dados do form a */
     > a {
-        color: #F4EDE8;
+        color: #f4ede8;
         display: block;
         margin-top: 24px;
         text-decoration: none;

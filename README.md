@@ -996,3 +996,17 @@ Utilizando Unform: auxilia na performance de formulários no React
 ```
 yarn add @unform/core @unform/web
 ```
+
+**Usabilidade do input:**
+<br>**useCallback:** forma de criar funções dentro do componente que não são recriadas na memória toda vez que o componente atualiza, elas ficam memorizadas ficam salvas. Sempre que for utilizar um função dentro de um componente, utilize o useCallback
+
+Validação do formulario de cadastro:
+```
+yarn add yup
+
+yarn add @types/yup -D
+```
+
+Exibindo erros do input:
+useRef: para obter informações direto ao  formulário
+
