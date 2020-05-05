@@ -4,7 +4,8 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 import getValidationErros from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.svg';
@@ -25,6 +26,7 @@ const SignIn: React.FC = () => {
     const formRef = useRef<FormHandles>(null);
 
     const { signIn } = useAuth();
+    const { addToast } = useToast();
 
     // função de cadastrar
     const handleSubmit = useCallback(
@@ -49,19 +51,22 @@ const SignIn: React.FC = () => {
                     abortEarly: false,
                 });
 
-                signIn({
+                await signIn({
                     email: data.email,
                     password: data.password,
                 });
             } catch (err) {
-                console.log(err);
+                // Verificando erro se é uma instancia do Yup.ValidationError
+                if (err instanceof Yup.ValidationError) {
+                    const errors = getValidationErros(err);
+                    formRef.current?.setErrors(errors);
+                }
 
-                const errors = getValidationErros(err);
-
-                formRef.current?.setErrors(errors);
+                // disparar um toast
+                addToast();
             }
         },
-        [signIn],
+        [signIn, addToast],
     );
 
     return (

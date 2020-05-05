@@ -1042,4 +1042,10 @@ Criando hook useAuth
 
 Logout da aplicação
 
+Mensagens de Toasts:
+Estrutura de Toasts
+
+Criando hook de toast: fazendo eles serem dinamicos, conseguindo acessa-los e remove-los de forma dinamica 
+
+Adicionando e removendo Toasts
 
