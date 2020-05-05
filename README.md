@@ -1048,4 +1048,25 @@ Estrutura de Toasts
 Criando hook de toast: fazendo eles serem dinamicos, conseguindo acessa-los e remove-los de forma dinamica 
 
 Adicionando e removendo Toasts
+Utilizando id:
+```
+yarn add uuidv4
+```
 
+Exemplo caso queira internacinalizar a aplicação:
+https://github.com/i18next/react-i18next
+
+Adionando toast
+Removendo toast no button
+Removendo toast depois de um determinado tempo
+
+Animando Toasts
+Quando aparecer na pagina o toast vir do canto direito
+E quando sair da pagina voltar pelo canto direto
+
+pacote para animação
+https://www.react-spring.io/
+
+```
+yarn add react-spring
+```
