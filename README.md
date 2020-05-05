@@ -1035,3 +1035,11 @@ yarn add axios
 
 Sempre que tornar um metodo em async, ele obrigatoriamente estara retornando uma Promise
 
+Mantendo usuario no storage:
+Isso irá executar quando der F5 na pagina ou quando o usuario fechar o navegador e acessar novamente a aplicação
+
+Criando hook useAuth
+
+Logout da aplicação
+
+
