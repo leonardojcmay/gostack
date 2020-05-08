@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 import signInBackgroundImg from '../../assets/sign-in-background.png';
 
@@ -13,11 +13,34 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center; /* alinhando itens no centro */
+    justify-content: center;
 
-    place-content: center; /* jogando todo o conteudo para o centro */
+    /*place-content: center;*/ /* jogando todo o conteudo para o centro */
 
     width: 100%;
     max-width: 700px; /* não aumenta a mais que 700px. Mas ocupa todo espaço com o width: 100% */
+`;
+
+/* animação de aparecer da esquerda */
+const appearFromLeft = keyframes`
+    from {
+        opacity: 0;
+        transform: translateX(-50px)
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0)
+    }
+`;
+
+export const AnimationContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* alinhando itens no centro */
+    justify-content: center;
+
+    /*executando animação*/
+    animation: ${appearFromLeft} 1s;
 
     form {
         margin: 80px 0;

@@ -1070,3 +1070,16 @@ https://www.react-spring.io/
 ```
 yarn add react-spring
 ```
+
+Rotas da aplicação
+Configurando rotas:
+```
+yarn add react-router-dom
+
+yarn add @types/react-router-dom
+```
+
+Rotas autenticadas:
+<br>Verificando se a rota for privada e o usuario nao esta autenticado, encaminha para rota de login
+<br>Verificando se a rota não for privada e o usuario esta autenticado, encaminha para rota de dashboard
+<br>Se não, mostrar o component da forma que é necessario mostrar

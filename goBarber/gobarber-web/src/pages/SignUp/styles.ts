@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 import signUpBackgroundImg from '../../assets/sign-up-background.png';
 
@@ -13,11 +13,34 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center; /* alinhando itens no centro */
+    justify-content: center;
 
-    place-content: center; /* jogando todo o conteudo para o centro */
+    /*place-content: center;*/ /* jogando todo o conteudo para o centro */
 
     width: 100%;
     max-width: 700px; /* não aumenta a mais que 700px. Mas ocupa todo espaço com o width: 100% */
+`;
+
+/* animação de aparecer da direita */
+const appearFromRight = keyframes`
+    from {
+        opacity: 0;
+        transform: translateX(50px)
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0)
+    }
+`;
+
+export const AnimationContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* alinhando itens no centro */
+    justify-content: center;
+
+    /*executando animação*/
+    animation: ${appearFromRight} 1s;
 
     form {
         margin: 80px 0;
@@ -43,7 +66,7 @@ export const Content = styled.div`
 
     /* pegando somente o a que esta dentro do content, não entrando em niveis superiores, para que assim nao altere os dados do form a */
     > a {
-        color: #f4ede8;
+        color: #ff9000;
         display: block;
         margin-top: 24px;
         text-decoration: none;
@@ -57,7 +80,7 @@ export const Content = styled.div`
         }
 
         &:hover {
-            color: ${shade(0.2, '#F4EDE8')};
+            color: ${shade(0.2, '#ff9000')};
         }
     }
 `;
